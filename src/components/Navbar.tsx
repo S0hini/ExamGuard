@@ -1,5 +1,5 @@
 // src/components/Navbar.tsx
-import { Shield, Menu, X } from "lucide-react";
+import { Shield, Menu, X, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import SignIn from "./SignIn";
 import { auth } from "../firebase";
@@ -18,6 +18,9 @@ export default function Navbar() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser?.photoURL) {
+        console.log("✅ User logged in with photo:", currentUser.photoURL);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -52,15 +55,26 @@ export default function Navbar() {
                 </button>
               ) : (
                 <div className="flex items-center space-x-3">
-                  {user.photoURL && (
+                  {/* Profile Picture */}
+                  {user.photoURL ? (
                     <img
                       src={user.photoURL}
-                      alt="User Avatar"
-                      className="w-8 h-8 rounded-full border border-white/30"
+                      alt="Profile"
+                      className="w-8 h-8 rounded-full border-2 border-white/30 object-cover"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        console.log("Image load error, hiding image");
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#2563eb] border-2 border-white/30 flex items-center justify-center">
+                      <User className="w-4 h-4 text-white" />
+                    </div>
                   )}
+                  
                   <span className="text-white font-medium">
-                    {user.displayName || user.email}
+                    {user.displayName || user.email?.split('@')[0] || 'User'}
                   </span>
                   <button
                     onClick={handleSignOut}
@@ -100,19 +114,31 @@ export default function Navbar() {
                 </button>
               ) : (
                 <div className="px-3 space-y-2">
-                  {user.photoURL && (
-                    <img
-                      src={user.photoURL}
-                      alt="User Avatar"
-                      className="w-10 h-10 rounded-full border border-white/30"
-                    />
-                  )}
-                  <span className="block text-white">
-                    {user.displayName || user.email}
-                  </span>
+                  <div className="flex items-center space-x-3">
+                    {/* Profile Picture Mobile */}
+                    {user.photoURL ? (
+                      <img
+                        src={user.photoURL}
+                        alt="Profile"
+                        className="w-10 h-10 rounded-full border-2 border-white/30 object-cover"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#2563eb] border-2 border-white/30 flex items-center justify-center">
+                        <User className="w-5 h-5 text-white" />
+                      </div>
+                    )}
+                    
+                    <span className="block text-white font-medium">
+                      {user.displayName || user.email?.split('@')[0] || 'User'}
+                    </span>
+                  </div>
                   <button
                     onClick={handleSignOut}
-                    className="block w-full text-left text-red-400 hover:text-red-300 transition-colors"
+                    className="block w-full text-left text-red-400 hover:text-red-300 transition-colors py-2"
                   >
                     Sign Out
                   </button>
