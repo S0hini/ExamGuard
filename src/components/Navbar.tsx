@@ -1,14 +1,15 @@
-// src/components/Navbar.tsx
 import { Shield, Menu, X, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import SignIn from "./SignIn";
 import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -64,7 +65,7 @@ export default function Navbar() {
                       referrerPolicy="no-referrer"
                       onError={(e) => {
                         console.log("Image load error, hiding image");
-                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.style.display = "none";
                       }}
                     />
                   ) : (
@@ -72,9 +73,11 @@ export default function Navbar() {
                       <User className="w-4 h-4 text-white" />
                     </div>
                   )}
-                  
+
                   <span className="text-white font-medium">
-                    {user.displayName || user.email?.split('@')[0] || 'User'}
+                    {user.displayName ||
+                      user.email?.split("@")[0] ||
+                      "User"}
                   </span>
                   <button
                     onClick={handleSignOut}
@@ -86,7 +89,7 @@ export default function Navbar() {
               )}
 
               <button
-                onClick={() => scrollToSection("contact")}
+                onClick={() => navigate("/camera")}
                 className="bg-[#3b82f6] text-white px-6 py-2 rounded-full hover:bg-[#2563eb] transition-all duration-300 transform hover:scale-105 font-medium"
               >
                 Get Started
@@ -98,7 +101,11 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden text-white p-2"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
 
@@ -123,7 +130,7 @@ export default function Navbar() {
                         className="w-10 h-10 rounded-full border-2 border-white/30 object-cover"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
-                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.style.display = "none";
                         }}
                       />
                     ) : (
@@ -131,9 +138,11 @@ export default function Navbar() {
                         <User className="w-5 h-5 text-white" />
                       </div>
                     )}
-                    
+
                     <span className="block text-white font-medium">
-                      {user.displayName || user.email?.split('@')[0] || 'User'}
+                      {user.displayName ||
+                        user.email?.split("@")[0] ||
+                        "User"}
                     </span>
                   </div>
                   <button
@@ -146,7 +155,7 @@ export default function Navbar() {
               )}
 
               <button
-                onClick={() => scrollToSection("contact")}
+                onClick={() => navigate("/camera")}
                 className="block w-full bg-[#3b82f6] text-white px-6 py-2 rounded-full hover:bg-[#2563eb] transition-colors font-medium"
               >
                 Get Started
