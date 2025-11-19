@@ -72,6 +72,9 @@ ESLint • Prettier • Vite
 git clone https://github.com/<your-username>/ExamGuard.git
 cd ExamGuard
 npm install
+npm install firebase
+npm install react router dom
+npm install @tensorflow/tfjs @tensorflow-models/blazeface @tensorflow-models/face-landmarks-detection @tensorflow-models/coco-ssd firebase
 npm run dev
 ```
 
