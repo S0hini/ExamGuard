@@ -4,10 +4,10 @@ console.log("Firebase connected:", db);
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import HowItWorks from "./components/HowItWorks";
+import HowItWorks from "./components/Howitworks";
 //import Features from "./components/Features";
 import Research from "./components/Research";
-import TechDeepDive from "./components/TechDeepDive";
+import TechDeepDive from "./components/Techdeepdive";
 //import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CameraPage from "./components/CameraPage";
