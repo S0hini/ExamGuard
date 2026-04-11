@@ -1,81 +1,65 @@
 # 📚 ExamGuard — Smart AI-Powered Proctoring System
 
-ExamGuard is an intelligent online-proctoring web application designed to ensure fair examinations using real-time face detection, eye-tracking, behavioral monitoring, and automated alerts.  
-Built with **React**, **TypeScript**, **TensorFlow.js**, **MediaPipe**, and **Firebase**, ExamGuard offers a seamless, secure, and efficient proctoring experience.
+ExamGuard is an intelligent online proctoring web application that ensures fair examinations using real-time face detection, eye-tracking, behavioral monitoring, and automated alerts — all running directly in the browser.
 
 ---
 
 ## 🚀 Features
 
 ### 🎥 Real-Time Monitoring
-- Live webcam streaming  
-- Face detection  
-- Multiple face detection  
-- No-face detection  
-- Eye-tracking (Mediapipe Iris)  
-- Look-away detection  
-- Suspicious behavior tracking  
+- Live webcam streaming
+- Face detection (single & multiple)
+- No-face detection alerts
+- Eye-tracking via MediaPipe Iris
+- Look-away detection
+- Suspicious behavior tracking
 
 ### ⚠️ Automated Alerts
-- Looks away from screen  
-- No face detected  
-- Multiple faces  
-- Mouth opening (talking detection)  
-- Frequent head movement  
-- Mobile usage (if model enabled)
+- Look-away from screen
+- No face detected
+- Multiple faces in frame
+- Mouth opening (talking detection)
+- Frequent head movement
+- Mobile device usage (if model enabled)
 
-All alerts are logged and stored in the database with timestamps.
+All alerts are logged in Firebase with precise timestamps.
 
 ### 📊 Student Behavior Analytics
-- Total alerts  
-- Look-away count  
-- No-face occurrences  
-- Multiple-face alerts  
-- Mouth-open frequency  
-- Overall exam integrity score  
+- Total alert count
+- Look-away frequency
+- No-face occurrences
+- Multiple-face detections
+- Mouth-open count
+- Overall exam integrity score
 
 ### ☁️ Cloud Integration (Firebase)
-- Authentication  
-- Firestore logging  
-- Realtime updates  
-- Secure user session handling  
-
-### 💻 Modern Web Tech
-- React + TypeScript  
-- Vite bundler  
-- TensorFlow.js models  
-- MediaPipe FaceMesh & Iris  
-- Hot reloading  
-- Modular architecture  
+- User authentication
+- Firestore alert logging
+- Real-time updates
+- Secure session management
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Frontend:**  
-React • TypeScript • TailwindCSS • Vite
-
-**AI / ML:**  
-TensorFlow.js • MediaPipe FaceMesh • BlazeFace • Iris Tracking
-
-**Backend:**  
-Firebase Authentication • Firestore Database
-
-**Build Tools:**  
-ESLint • Prettier • Vite
+| Layer | Technologies |
+|-------|-------------|
+| Frontend | React, TypeScript, TailwindCSS, Vite |
+| AI / ML | TensorFlow.js, MediaPipe FaceMesh, BlazeFace, Iris Tracking |
+| Backend | Firebase Authentication, Firestore |
+| Build Tools | ESLint, Prettier, Vite |
 
 ---
 
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/<your-username>/ExamGuard.git
+git clone https://github.com/S0hini/ExamGuard.git
 cd ExamGuard
 npm install
 npm install firebase
-npm install react router dom
-npm install @tensorflow/tfjs @tensorflow-models/blazeface @tensorflow-models/face-landmarks-detection @tensorflow-models/coco-ssd firebase
-npm run dev
+npm install react-router-dom
+npm install @tensorflow/tfjs @tensorflow-models/blazeface @tensorflow-models/face-landmarks-detection @tensorflow-models/coco-ssd
 ```
 
 ---
@@ -83,60 +67,68 @@ npm run dev
 ## ▶️ Usage
 
 1. Start the development server:
-
-```bash
-npm run dev
-```
-
-2. Log in with your registered student account.  
-3. Start an exam session.  
+   ```bash
+   npm run dev
+   ```
+2. Log in with your registered student account.
+3. Start an exam session.
 4. ExamGuard will:
-   - Access the webcam  
-   - Run live AI-based proctoring  
-   - Detect suspicious behavior  
-   - Log alerts to Firebase  
-5. End the exam to review the generated report.
+   - Access your webcam
+   - Run live AI-based proctoring
+   - Detect and flag suspicious behavior
+   - Log all alerts to Firebase
+5. End the exam to view the generated integrity report.
+
+---
+
+## 🗂️ Project Structure
+
+```
+ExamGuard/
+├── src/
+│   ├── components/       # Reusable UI components
+│   ├── pages/            # Route-level pages (Login, Exam, Report)
+│   ├── hooks/            # Custom React hooks (webcam, detection)
+│   ├── utils/            # Helper functions
+│   └── firebase/         # Firebase config & services
+├── index.html
+├── vite.config.ts
+├── tailwind.config.js
+└── package.json
+```
 
 ---
 
 ## 🧭 Roadmap
 
-- [ ] Add audio classification for noise detection  
-- [ ] Teacher dashboard for monitoring multiple students  
-- [ ] Complete exam-session report generation  
-- [ ] Integration of head pose estimation  
-- [ ] Add video recording & playback  
-- [ ] Mobile version compatibility  
+- [ ] Audio classification for noise detection
+- [ ] Teacher dashboard for monitoring multiple students
+- [ ] Complete exam-session report generation
+- [ ] Head pose estimation integration
+- [ ] Video recording & playback
+- [ ] Mobile version compatibility
 
 ---
 
 ## 🤝 Contributors
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/S0hini">
-        <img src="https://avatars.githubusercontent.com/u/127102875" width="100px;" alt=""/>
-        <br /><sub><b>Sohini</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/Sayantani01">
-        <img src="https://avatars.githubusercontent.com/u/143098994" width="100px;" alt=""/>
-        <br /><sub><b>Sayantani</b></sub>
-      </a>
-    </td>
-  </tr>
-</table>
+| Contributor | GitHub |
+|-------------|--------|
+| Sohini | [@S0hini](https://github.com/S0hini) |
+| Sayantani | [@Sayantani01](https://github.com/Sayantani01) |
 
 ---
 
 ## 📄 License
 
-This project is **Open Source** under the **MIT License**
+This project is open source under the [MIT License](LICENSE).
 
 ---
 
-## ⭐ Support This Project
+## 🌐 Live Demo
 
-If you like this project, consider giving it a **⭐ star** on GitHub!
+👉 [exam-guard-blue.vercel.app](https://exam-guard-blue.vercel.app)
+
+---
+
+> If you find this project useful, consider giving it a ⭐ on GitHub!
